@@ -6,6 +6,18 @@ authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
 python = ">=3.10.0,<3.12"
+langchain = "^0.1.14"
+anthropic = "^0.23.1"
+pinecone-client = "^3.2.2"
+ebooklib = "^0.18"
+fitz = "^0.0.1.dev2"
+pandas = "^2.2.1"
+tqdm = "^4.66.2"
+langchain-community = "^0.0.32"
+langchain-openai = "^0.1.3"
+markdown = "^3.6"
+cohere = "^5.2.5"
+langchain-core = "^0.1.42"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md

@@ -5,7 +5,6 @@ import warnings
 from typing import Any, Dict, List, Tuple
 import re
 import cohere
-import ebooklib
 import fitz
 import markdown
 import pandas as pd
@@ -21,7 +20,6 @@ from canopy.models.data_models import (
 )
 from canopy.tokenizer import Tokenizer
 from ebooklib import epub
-from IPython.display import HTML, display
 from langchain_community.utilities import SerpAPIWrapper
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
@@ -109,10 +107,10 @@ def extract_data(sources_dir):
 
 
 
-query = "Tell me somethign interesting about mathematical proofs." #base query
+#query = "Tell me somethign interesting about mathematical proofs." #base query
 
-#print("What do you want me to write about?")
-#query = input()
+print("What do you want me to write about?")
+query = input()
 
 #invoking model b/c we need to add something to kb if there aren't any docs to work off of
 model = ChatOpenAI(model="gpt-4")
@@ -120,9 +118,9 @@ initial_prompt = ChatPromptTemplate.from_template("You are a helpful assistant t
 initial_chain = initial_prompt | model
 initial_response = initial_chain.invoke({"query": query})
 
-print("initial_response: ")
-print(type(initial_response.content))
-print(initial_response)
+#print("initial_response: ")
+#print(type(initial_response.content))
+#print(initial_response)
 df = pd.DataFrame({'id' : [query], 'text' : [initial_response.content]})
 
 while True:
@@ -132,7 +130,7 @@ while True:
   if documents_in_folder.lower() == "y":
       warnings.filterwarnings('ignore')
       sources_dir = 'sources'
-      df = df.append(extract_data(sources_dir), ignore_index=True)
+      df = pd.concat([df, extract_data(sources_dir)], ignore_index=True)
       print("\nGreat, found these documents:\n")
       for index, element in enumerate(df.iloc[:, 0], start=1):
           print(f"[{index}] {element}\n")

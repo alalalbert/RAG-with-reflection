@@ -47,7 +47,6 @@ for var_name in needed_env_vars:
   
 # 
 '''
-
 # adding docs to context, if any
 
 def remove_markdown(content):
@@ -103,11 +102,8 @@ def extract_data(sources_dir):
   return pd.DataFrame(data)
 
 
-# add here something to pick up the core query - what do you want me to write an essay about?
 
-
-
-#query = "Tell me somethign interesting about mathematical proofs." #base query
+#query = "Tell me somethign interesting about mathematical proofs." 
 
 print("What do you want me to write about?")
 query = input()
@@ -227,7 +223,6 @@ def evaluate_with_llm(model, prompt, generated_text):
 
   return evaluations
 
-
 def critique(model, prompt, generated_text):
   evaluation_weights = {
       'relevance': 3,
@@ -295,7 +290,6 @@ def extract_documents_texts(results):
 
 co = cohere.Client(os.environ["COHERE_API_KEY"])
 
-
 def get_reranked_result(query, top_n=1):
   matches = kb.query([Query(text=query)])
   print("get_reranked result matches:") #bkmk
@@ -330,7 +324,6 @@ def get_reranked_result(query, top_n=1):
       print("No results found in rerank results")
 
   return texts
-
 
 class QueryDetail:
     def __init__(self, query: str):
@@ -411,17 +404,7 @@ def advanced_rag_query(model, query: str, num_queries: int) -> List[QueryDetail]
     processed_queries = query_processor.process_queries()
     return processed_queries
 
-#main thing we're doing here
-
-#first, we invoke the model
-
-#model = ChatAnthropic(model='claude-3-sonnet-20240229')
-
-#then, we do an advanced_rag_query
 results = advanced_rag_query(model, query, 3) #bkmk 
-
-#print("line 411 results:")
-#print (results)
 
 combined_content = " ".join(content for result in results for content in result.content)
 #print (combined_content)
@@ -430,11 +413,6 @@ advanced_rag_results = consolidate(model, combined_content)
 #print("adv_rag_critique, which calls critique, passing advanced_rag_results:")
 #print(advanced_rag_results)
 advanced_rag_critique = critique(model, query, advanced_rag_results)
-
-#history = []
-#rag_result, history = chat(query, history)
-#rag_critique = critique(model, query, rag_result)
-
 
 # Convert your Markdown content and critiques to strings, assuming they might not be strings already
 final_result_html = markdown.markdown(str(advanced_rag_results))

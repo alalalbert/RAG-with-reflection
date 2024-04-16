@@ -42,7 +42,7 @@ You'll end up with a more polished output, and one more reflective of what is in
 
 ## Reflections
 
-After playing around with this a lot I've discovered that the reflection isn't always beneficial. It's grounding, and it polishes the work a lot, but it can also strip out some of the detail from the final text. I suspect this could be improved by weighting different characteristics, or dynamically assigning characteristics to weight based on user input.
+After playing around with this a lot I've discovered that the reflection isn't always beneficial. Reflection is grounding, and it polishes the work a lot, but it can also strip out some of the detail from the final text. I suspect this could be improved by weighting different characteristics, or dynamically assigning characteristics to weight based on user input.
 
 The reflection system also tends to strip out anecdotes from the final text. This is either good or bad depending on the use case, but it's reflective of the sources I provided, which were mostly bland textbooks. In another experiment, where I loaded the ./sources directory with popular history books & fed a different prompt, it did include anecdotes (signaling the source material is important for the content that gets included), but the RAG system sterilized them a bit; they came off with less life than in the source documents.
 
@@ -60,4 +60,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 Big ups to Pinecone for the <a href='https://github.com/pinecone-io/examples/blob/master/learn/generation/better-rag/advanced-rag-with-canopy.ipynb'>sample code</a> on which this is based
 
-If you're reading this, check out <a href='https://www.oneusefulthing.org/'>Ethan Mollick</a> who writes about how this tech is changign the world of work
+If you're reading this, check out <a href='https://www.oneusefulthing.org/'>Ethan Mollick</a> who writes about how this tech is changing the world of work
